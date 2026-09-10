@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional ATS-friendly CV">
+    <title>Professional CV</title>
+
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2563eb;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --light: #f3f6fa;
+            --border: #dbe2ea;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            background: #eef2f7;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .cv-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), #102a43);
+            color: white;
+            padding: 45px 55px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header .job-title {
+            font-size: 19px;
+            color: #dbeafe;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 25px;
+            font-size: 14px;
+        }
+
+        .contact span {
+            color: #e5edf7;
+        }
+
+        /* Main */
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .main {
+            padding: 40px 45px;
+        }
+
+        .sidebar {
+            padding: 40px 30px;
+            background: var(--light);
+            border-left: 1px solid var(--border);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .summary {
+            color: #374151;
+            font-size: 15px;
+        }
+
+        /* Experience */
+        .experience-item,
+        .education-item,
+        .project-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 18px;
+            border-left: 2px solid #dbeafe;
+        }
+
+        .experience-item::before,
+        .education-item::before,
+        .project-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .item-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .company {
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 2px 0;
+        }
+
+        .date {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        /* Skills */
+        .skill {
+            margin-bottom: 16px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: #dce3eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                var(--secondary),
+                #60a5fa
+            );
+            border-radius: 10px;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Sidebar */
+        .sidebar .section-title {
+            font-size: 15px;
+        }
+
+        .sidebar-item {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-item strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .sidebar-item span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .cv-container {
+                margin: 0;
+                max-width: 100%;
+                box-shadow: none;
+            }
+
+            .header {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .skill-progress {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 0;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .main,
+            .sidebar {
+                padding: 30px 25px;
+            }
+
+            .sidebar {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .contact {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="cv-container">
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>YOUR NAME</h1>
+        <div class="job-title">Professional Job Title</div>
+
+        <div class="contact">
+            <span>📍 Chennai, India</span>
+            <span>📞 +91 XXXXX XXXXX</span>
+            <span>✉ your.email@example.com</span>
+            <span>🔗 linkedin.com/in/yourname</span>
+            <span>💻 github.com/yourname</span>
+        </div>
+    </header>
+
+
+    <div class="content">
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- PROFESSIONAL SUMMARY -->
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+
+                <p class="summary">
+                    Results-driven professional with experience in developing
+                    innovative solutions and delivering measurable results.
+                    Strong expertise in relevant technologies, problem-solving,
+                    communication, and project execution. Passionate about
+                    continuous learning and contributing to high-performing
+                    teams.
+                </p>
+            </section>
+
+
+            <!-- EXPERIENCE -->
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+
+                <div class="experience-item">
+                    <div class="item-title">Job Title</div>
+                    <div class="company">Company Name</div>
+                    <div class="date">Jan 2024 – Present | Chennai, India</div>
+
+                    <ul>
+                        <li>
+                            Developed and implemented solutions that improved
+                            operational efficiency by 25%.
+                        </li>
+                        <li>
+                            Collaborated with cross-functional teams to
+                            successfully deliver multiple projects.
+                        </li>
+                        <li>
+                            Identified process improvements and reduced
+                            turnaround time by 20%.
+                        </li>
+                        <li>
+                            Maintained high-quality standards while meeting
+                            project deadlines.
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="experience-item">
+                    <div class="item-title">Previous Job Title</div>
+                    <div class="company">Previous Company</div>
+                    <div class="date">Jun 2022 – Dec 2023 | Chennai, India</div>
+
+                    <ul>
+                        <li>
+                            Managed day-to-day responsibilities while meeting
+                            organizational objectives.
+                        </li>
+                        <li>
+                            Contributed to process optimization and team
+                            productivity.
+                        </li>
+                        <li>
+                            Prepared reports, analyzed data, and communicated
+                            findings to stakeholders.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <!-- PROJECTS -->
+            <section class="section">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="project-item">
+                    <div class="item-title">Project Name</div>
+                    <div class="company">
+                        HTML · CSS · JavaScript · Technology
+                    </div>
+
+                    <ul>
+                        <li>
+                            Designed and developed a responsive application
+                            addressing a specific business requirement.
+                        </li>
+                        <li>
+                            Implemented key features and optimized performance.
+                        </li>
+                        <li>
+                            Improved user experience through responsive and
+                            accessible design.
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="project-item">
+                    <div class="item-title">Second Project</div>
+                    <div class="company">
+                        Technology · Framework · Database
+                    </div>
+
+                    <ul>
+                        <li>
+                            Developed an end-to-end solution for the project
+                            requirement.
+                        </li>
+                        <li>
+                            Integrated required APIs and database functionality.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <!-- EDUCATION -->
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+
+                <div class="education-item">
+                    <div class="item-title">Bachelor of Technology / Engineering</div>
+                    <div class="company">University / College Name</div>
+                    <div class="date">2020 – 2024</div>
+
+                    <p>CGPA: 8.5 / 10</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="item-title">Higher Secondary Education</div>
+                    <div class="company">School Name</div>
+                    <div class="date">2018 – 2020</div>
+
+                    <p>Percentage: 90%</p>
+                </div>
+            </section>
+
+        </main>
+
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <!-- SKILLS -->
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>HTML / CSS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width:90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width:85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width:80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>SQL</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width:75%"></div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- TOOLS -->
+            <section class="section">
+                <h2 class="section-title">Tools & Technologies</h2>
+
+                <div class="tags">
+                    <span class="tag">Git</span>
+                    <span class="tag">GitHub</span>
+                    <span class="tag">VS Code</span>
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Figma</span>
+                </div>
+            </section>
+
+
+            <!-- CERTIFICATIONS -->
+            <section class="section">
+                <h2 class="section-title">Certifications</h2>
+
+                <div class="sidebar-item">
+                    <strong>Certification Name</strong>
+                    <span>Issuing Organization · 2025</span>
+                </div>
+
+                <div class="sidebar-item">
+                    <strong>Another Certification</strong>
+                    <span>Issuing Organization · 2024</span>
+                </div>
+            </section>
+
+
+            <!-- ACHIEVEMENTS -->
+            <section class="section">
+                <h2 class="section-title">Achievements</h2>
+
+                <div class="sidebar-item">
+                    <strong>Achievement / Award</strong>
+                    <span>Description of the achievement.</span>
+                </div>
+
+                <div class="sidebar-item">
+                    <strong>Competition / Recognition</strong>
+                    <span>Description of the recognition.</span>
+                </div>
+            </section>
+
+
+            <!-- LANGUAGES -->
+            <section class="section">
+                <h2 class="section-title">Languages</h2>
+
+                <div class="sidebar-item">
+                    <strong>English</strong>
+                    <span>Professional Proficiency</span>
+                </div>
+
+                <div class="sidebar-item">
+                    <strong>Tamil</strong>
+                    <span>Native</span>
+                </div>
+
+                <div class="sidebar-item">
+                    <strong>Hindi</strong>
+                    <span>Conversational</span>
+                </div>
+            </section>
+
+        </aside>
+
+    </div>
+
+
+    <footer class="footer">
+        Professional CV • Updated 2026
+    </footer>
+
+</div>
+
+</body>
+</html>
